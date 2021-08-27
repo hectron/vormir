@@ -15,7 +15,7 @@ type User struct {
 
 var (
 	lastDayDisplayNameRegex = regexp.MustCompile(`(?i)\(.*last\s*day.*\)`)
-	lastDayRegex            = regexp.MustCompile(`\d*\/\d*`)
+	lastDayRegex            = regexp.MustCompile(`\d{2}\/\d{2}`)
 )
 
 func fetchSlackUsers() ([]User, error) {
