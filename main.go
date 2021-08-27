@@ -42,8 +42,8 @@ func main() {
 				Action: func(c *cli.Context) error {
 					users, err := fetchSlackUsers()
 
-					if err == nil {
-						fmt.Printf("Users: %q", users)
+					for _, user := range users {
+						fmt.Printf("%s (Display: %s): Quitting? %v\n", user.Name, user.DisplayName, user.IsQuitting())
 					}
 
 					return err
