@@ -40,13 +40,13 @@ func main() {
 				Name:  "users",
 				Usage: "Updates the list of available users",
 				Action: func(c *cli.Context) error {
-					users, err := fetchSlackUsers()
+					users := findUsersThatAreQuitting()
 
 					for _, user := range users {
-						fmt.Printf("%s (Display: %s): Quitting? %v\n", user.Name, user.DisplayName, user.IsQuitting())
+						fmt.Printf("%s is quitting!", user.DisplayName)
 					}
 
-					return err
+					return nil
 				},
 			},
 		},
