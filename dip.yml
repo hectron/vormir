@@ -1,0 +1,13 @@
+version: '2'
+
+compose:
+  files:
+    - docker-compose.yml
+
+interaction:
+  bash:
+    service: app
+    command: '/bin/bash'
+  test:
+    service: app
+    command: go test

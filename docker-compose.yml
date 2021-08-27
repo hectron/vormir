@@ -2,6 +2,6 @@ version: "3.4"
 
 services:
   app:
-    image: golang:1.16
+    build: .
     volumes:
       - ".:/go/src/app"
