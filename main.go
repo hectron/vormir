@@ -33,6 +33,18 @@ func main() {
 				Usage:   "Simple command to test installation + configuration",
 				Action: func(c *cli.Context) error {
 					fmt.Printf("Version: %q\nmyVar: %q\n", version, myVar)
+
+					rows, err := db.Query("SELECT 1")
+
+					if err == nil {
+						for rows.Next() {
+							var num int
+							err = rows.Scan(&num)
+
+							fmt.Printf("Result from SQL: %v\n", num)
+						}
+					}
+
 					return nil
 				},
 			},
@@ -40,10 +52,16 @@ func main() {
 				Name:  "users",
 				Usage: "Updates the list of available users",
 				Action: func(c *cli.Context) error {
+					err := updateOrCreateUsers()
+
+					if err != nil {
+						return err
+					}
+
 					users := findUsersThatAreQuitting()
 
 					for _, user := range users {
-						fmt.Printf("%s is quitting!", user.DisplayName)
+						fmt.Printf("%s is quitting!\n", user.DisplayName)
 					}
 
 					return nil

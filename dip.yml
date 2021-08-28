@@ -11,3 +11,7 @@ interaction:
   test:
     service: app
     command: go test
+
+  psql:
+    service: db
+    command: psql -h db -U postgres
