@@ -52,10 +52,16 @@ func main() {
 				Name:  "users",
 				Usage: "Updates the list of available users",
 				Action: func(c *cli.Context) error {
+					err := updateOrCreateUsers()
+
+					if err != nil {
+						return err
+					}
+
 					users := findUsersThatAreQuitting()
 
 					for _, user := range users {
-						fmt.Printf("%s is quitting!", user.DisplayName)
+						fmt.Printf("%s is quitting!\n", user.DisplayName)
 					}
 
 					return nil
